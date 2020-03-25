@@ -82,12 +82,37 @@ Once you have the ```krb5.conf``` you can start with the java implementation.
 In order to login using the kerberos login, we can either have a security configuration like the following
 
 ```java
-SampleClient {
+SampleClient /* this is the name of the configuration*/ {
    // Example that reuses the stored tgt token
   com.sun.security.auth.module.Krb5LoginModule required useTicketCache=true;
 };
 
 ```
+or set the [Configuration](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/javax/security/auth/login/Configuration.html) programmatically 
+
+```java
+    private static Configuration kerberosTicketCacheConfiguration() {
+        return new Configuration() {
+            @Override
+            public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
+                System.out.println("Name: " + name);
+                HashMap<String, Object> options = new HashMap<>();
+                options.put("useTicketCache", "true");
+                //options.put("useKeyTab", "true");
+                //options.put("principal", "endeios@EXAMPLE.COM");
+                //options.put("storeKey", "true");
+                //options.put("doNotPrompt", "true");
+                System.out.println(options);
+                AppConfigurationEntry appConfigurationEntry = new AppConfigurationEntry(Krb5LoginModule.class.getName(),
+                        AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, options);
+                return new AppConfigurationEntry[] { appConfigurationEntry };
+            }
+        };
+    }
+
+```
+The meaning of the parameter is in the [Krb5LoginModule](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.security.auth/com/sun/security/auth/module/Krb5LoginModule.html) documentation. 
+In the example, the configuration is set to any name of configuration entry
 
 ## Tools and basic usage
 
