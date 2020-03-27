@@ -26,4 +26,10 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'keberosLDAPIntegration.App'
+
+applicationDefaultJvmArgs = [
+    "-Djava.security.auth.login.config="+project.buildDir+"/resources/main/gsseg_jaas.conf",
+    "-Djava.security.krb5.conf="+project.buildDir+"/resources/main/krb5 copy.conf",
+]
+
+mainClassName = 'kerberosLDAPIntegration.App'
