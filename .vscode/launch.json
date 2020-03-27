@@ -1,0 +1,17 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Debug (Launch)-App<kerberos-LDAP>",
+            "request": "launch",
+            "mainClass": "kerberosLDAPIntegration.App",
+            "projectName": "kerberos-LDAP",
+            "vmArgs": ["-Djava.security.auth.login.config=${workspaceFolder}\\src\\main\\resources\\gsseg_jaas.conf"],
+        },
+    ]
+}

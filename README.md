@@ -1,6 +1,6 @@
 # How to use kerberos to authenticate to LDAP in Java
 
-This article describes how one can use Kerberos to authenticate to an LDAP service
+This article describes how one can use Kerberos to authenticate to an LDAP service.
 It requires that one knows [how kerberos works](https://cyberx.tech/kerberos-authentication/) and
 some basic java programming. This app is not for web app kerberos authentication: if you need
 that please go to [Baeldung](https://www.baeldung.com/spring-security-kerberos-integration)
@@ -168,15 +168,6 @@ class LDAPAttributesRetrieverAction implements java.security.PrivilegedAction<At
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-    }
-
-    private static SearchControls getSimpleSearchControls() {
-        final SearchControls searchControls = new SearchControls();
-        searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-        searchControls.setTimeLimit(30000);
-        // String[] attrIDs = {"objectGUID"};
-        // searchControls.setReturningAttributes(attrIDs);
-        return searchControls;
     }
 }
 ```
